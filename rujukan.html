@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan Rujukan | PMI Jakarta Utara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+        }
+
+        .header .logo i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .greeting-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .form-group label i {
+            color: #667eea;
+            margin-right: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin: 20px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+        }
+
+        .note {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #475569;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 25px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-truck-medical"></i>
+                </div>
+                <div class="greeting-badge" id="greetingText">
+                    <!-- Salam akan muncul di sini -->
+                </div>
+                <h1>Form Laporan Rujukan</h1>
+                <p>PMI Kota Jakarta Utara | Ambulan Gawat Darurat Gratis</p>
+            </div>
+
+            <form id="reportForm">
+                <!-- WAKTU PELAYANAN -->
+                <div class="section-title">
+                    <i class="fas fa-clock"></i> Waktu Pelayanan
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Hari/Tanggal</label>
+                        <input type="text" id="tanggal" placeholder="Contoh: Jum'at, 27 Maret 2026" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-start"></i> Pukul Berangkat</label>
+                        <input type="text" id="pukul" placeholder="Contoh: 16:55 Wib" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-end"></i> Pukul Selesai</label>
+                        <input type="text" id="selesai" placeholder="Contoh: 18:14 Wib" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Tujuan</label>
+                        <input type="text" id="tujuan" placeholder="Contoh: Rumah ke RSUD Koja" required>
+                    </div>
+                </div>
+
+                <!-- DATA PASIEN -->
+                <div class="section-title">
+                    <i class="fas fa-user-injured"></i> Data Pasien
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nama Pasien</label>
+                        <input type="text" id="nama" placeholder="Nama lengkap pasien" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-alt"></i> Usia</label>
+                        <input type="text" id="usia" placeholder="Contoh: 65 Thn" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-home"></i> Alamat (KTP)</label>
+                    <input type="text" id="alamat" placeholder="Alamat lengkap sesuai KTP" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-venus-mars"></i> Jenis Kelamin</label>
+                        <select id="jenisKelamin" required>
+                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-stethoscope"></i> Status</label>
+                        <input type="text" id="status" placeholder="Contoh: Rujukan / Pasien Umum / dll" value="Rujukan" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-smile"></i> Kondisi Pasien</label>
+                        <input type="text" id="kondisi" placeholder="Contoh: Sadar / Tidak Sadar / Kritis" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-head-side-vr"></i> Keluhan Pasien</label>
+                        <input type="text" id="keluhan" placeholder="Contoh: Lemas dan Pusing" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-notes-medical"></i> Riwayat Penyakit</label>
+                    <input type="text" id="riwayat" placeholder="Riwayat penyakit pasien (jika ada)">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-hand-holding-medical"></i> Tindakan</label>
+                    <textarea id="tindakan" rows="3" placeholder=""></textarea>
+                </div>
+
+                <!-- ALAT YANG DIGUNAKAN -->
+                <div class="section-title">
+                    <i class="fas fa-syringe"></i> Alat Yang Digunakan
+                </div>
+                <div class="form-group">
+                    <textarea id="alat" rows="3" placeholder="1. Handscoon 3 Set&#10;2. Masker 3 Pcs">1. Handscoon 3 Set
+2. Masker 3 Pcs</textarea>
+                </div>
+
+                <!-- PETUGAS -->
+                <div class="section-title">
+                    <i class="fas fa-users"></i> Petugas
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-truck"></i> Driver</label>
+                        <input type="text" id="driver" placeholder="Nama driver" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-md"></i> Crew</label>
+                        <input type="text" id="crew" placeholder="Nama crew (pisah dengan &)" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-building"></i> Posko</label>
+                    <input type="text" id="posko" placeholder="Nama posko" required>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="sendToWA()">
+                    <i class="fab fa-whatsapp"></i> Kirim Laporan ke WhatsApp
+                </button>
+            </form>
+
+            <div class="note">
+                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Call Center PMI Jakarta Utara<br>
+                <strong>089-8866-9000</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Nomor WhatsApp PMI Jakarta Utara
+        const WA_NUMBER = '628988669000'; // 089-8866-9000
+
+        // Fungsi untuk mendapatkan salam berdasarkan waktu
+        function getGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            
+            if (hours >= 5 && hours < 11) {
+                return "Selamat Pagi";
+            } else if (hours >= 11 && hours < 15) {
+                return "Selamat Siang";
+            } else if (hours >= 15 && hours < 18) {
+                return "Selamat Sore";
+            } else {
+                return "Selamat Malam";
+            }
+        }
+
+        // Tampilkan salam saat halaman dibuka
+        document.getElementById('greetingText').innerHTML = getGreeting();
+
+        function sendToWA() {
+            // Ambil semua nilai dari form
+            const tanggal = document.getElementById('tanggal').value;
+            const pukul = document.getElementById('pukul').value;
+            const selesai = document.getElementById('selesai').value;
+            const tujuan = document.getElementById('tujuan').value;
+            const nama = document.getElementById('nama').value;
+            const usia = document.getElementById('usia').value;
+            const alamat = document.getElementById('alamat').value;
+            const jenisKelamin = document.getElementById('jenisKelamin').value;
+            const status = document.getElementById('status').value;
+            const kondisi = document.getElementById('kondisi').value;
+            const keluhan = document.getElementById('keluhan').value;
+            const riwayat = document.getElementById('riwayat').value || '-';
+            const tindakan = document.getElementById('tindakan').value || '-';
+            const alat = document.getElementById('alat').value;
+            const driver = document.getElementById('driver').value;
+            const crew = document.getElementById('crew').value;
+            const posko = document.getElementById('posko').value;
+
+            // Validasi sederhana
+            if (!tanggal || !pukul || !selesai || !tujuan || !nama || !usia || !alamat || !status || !kondisi || !driver || !crew || !posko) {
+                alert('Mohon lengkapi semua data yang wajib diisi!');
+                return;
+            }
+
+            // Dapatkan salam sesuai waktu
+            const greeting = getGreeting();
+
+            // Format pesan sesuai template
+            const message = `*${greeting} IZIN MELAPORKAN PELAYANAN AMBULAN GAWAT DARURAT GRATIS*
+
+- *Hari/Tanggal* : ${tanggal}
+- *Pukul*      : ${pukul} 
+- *Selesai* 	 : ${selesai}
+- *Tujuan* 	 : ${tujuan}
+
+- *Dengan Rincian Sebagai Berikut*  :
+
+- *Nama*: ${nama}
+- *Usia*: ${usia}
+- *Alamat (KTP)*: ${alamat}
+- *Jenis Kelamin*: ${jenisKelamin}
+
+- *Status*: ${status}
+- *Kondisi Pasien*: ${kondisi}
+- *Keluhan Pasien*: ${keluhan}
+- *Riwayat Penyakit*: ${riwayat}
+
+- *Tindakan* : 
+${tindakan}
+
+- *Alat Yang Digunakan* :
+${alat}
+
+*Demikian Yang Dilaporkan*
+- *Driver :* ${driver}
+- *Crew   :* ${crew}
+- *Posko :* ${posko}
+
+*Call Center :*
+PMI Kota Jakarta Utara
+Telp. 089-8866-9000
+*#Terus Kobarkan Kebaikan*`;
+
+            // Encode untuk URL WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const waLink = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
+            
+            // Buka WhatsApp
+            window.open(waLink, '_blank');
+        }
+    </script>
+</body>
+</html>

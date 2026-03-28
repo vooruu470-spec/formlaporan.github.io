@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan Event | PMI Jakarta Utara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header .logo {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+        }
+
+        .header .logo i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            color: #1e293b;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .greeting-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+
+        .form-group label i {
+            color: #667eea;
+            margin-right: 6px;
+            width: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin: 20px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        /* OS Item */
+        .os-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .os-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .os-header h4 {
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .os-header h4 i {
+            margin-right: 8px;
+        }
+
+        .btn-remove {
+            background: #fee2e2;
+            border: none;
+            color: #ef4444;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+
+        .btn-add {
+            background: #e6f0ff;
+            border: none;
+            color: #667eea;
+            padding: 10px;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            background: #d9e6ff;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        .note {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.7rem;
+            color: #475569;
+            text-align: center;
+        }
+
+        .alat-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .alat-item input {
+            flex: 1;
+        }
+
+        .btn-add-alat {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 20px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="greeting-badge" id="greetingText"></div>
+                <h1>Form Laporan Event</h1>
+                <p>PMI Jakarta Utara | Tim Kesehatan</p>
+            </div>
+
+            <form id="reportForm">
+                <!-- INFORMASI EVENT -->
+                <div class="section-title"><i class="fas fa-info-circle"></i> Informasi Event</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Hari/Tanggal</label>
+                        <input type="text" id="tanggal" placeholder="Selasa, 24 Maret 2026" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Pukul</label>
+                        <input type="text" id="pukul" placeholder="08:00 Wib" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-end"></i> Selesai</label>
+                        <input type="text" id="selesai" placeholder="16:00 Wib" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tasks"></i> Kegiatan</label>
+                        <input type="text" id="kegiatan" placeholder="Timkes Arus Mudik Lebaran 2026" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Alamat</label>
+                    <input type="text" id="alamat" placeholder="Terminal Tanjung Priok" required>
+                </div>
+
+                <!-- DATA PENERIMA MANFAAT (OS) -->
+                <div class="section-title"><i class="fas fa-users"></i> Penerima Manfaat (OS)</div>
+                <div id="osList"></div>
+                <button type="button" class="btn-add" onclick="tambahOS()">
+                    <i class="fas fa-plus-circle"></i> + Tambah OS
+                </button>
+
+                <!-- ALAT YANG DIGUNAKAN -->
+                <div class="section-title"><i class="fas fa-syringe"></i> Alat Yang Digunakan</div>
+                <div id="alatList"></div>
+                <button type="button" class="btn-add-alat" onclick="tambahAlat()">
+                    <i class="fas fa-plus-circle"></i> + Tambah Alat
+                </button>
+
+                <!-- PETUGAS -->
+                <div class="section-title"><i class="fas fa-users"></i> Petugas</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-truck"></i> Driver</label>
+                        <input type="text" id="driver" placeholder="Ade Prayogo" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-md"></i> Crew</label>
+                        <input type="text" id="crew" placeholder="Septyan & Reva" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-building"></i> Posko</label>
+                    <input type="text" id="posko" placeholder="Salwa" required>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="sendToWA()">
+                    <i class="fab fa-whatsapp"></i> Kirim Laporan ke WhatsApp
+                </button>
+            </form>
+
+            <div class="note">
+                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Call Center PMI Jakarta Utara<br>
+                <strong>089-8866-9000</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WA_NUMBER = '628988669000';
+        let osCount = 0;
+        let alatCount = 0;
+
+        function getGreeting() {
+            const hours = new Date().getHours();
+            if (hours >= 5 && hours < 11) return "Selamat Pagi";
+            if (hours >= 11 && hours < 15) return "Selamat Siang";
+            if (hours >= 15 && hours < 18) return "Selamat Sore";
+            return "Selamat Malam";
+        }
+
+        document.getElementById('greetingText').innerHTML = getGreeting();
+
+        function tambahOS() {
+            osCount++;
+            const container = document.getElementById('osList');
+            const div = document.createElement('div');
+            div.className = 'os-item';
+            div.id = `os_${osCount}`;
+            div.innerHTML = `
+                <div class="os-header">
+                    <h4><i class="fas fa-user"></i> OS #${osCount}</h4>
+                    <button type="button" class="btn-remove" onclick="hapusOS(${osCount})"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+                <div class="form-group">
+                    <label>Nama / OS</label>
+                    <input type="text" class="os-nama" placeholder="Contoh: Risghy/L/28Thn">
+                </div>
+                <div class="form-group">
+                    <label>Kondisi (Cek Kesehatan)</label>
+                    <textarea class="os-kondisi" rows="2" placeholder=""></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Keluhan</label>
+                    <input type="text" class="os-keluhan" placeholder="Keluhan pasien (jika ada)">
+                </div>
+                <div class="form-group">
+                    <label>Tindakan</label>
+                    <input type="text" class="os-tindakan" placeholder="Tindakan yang diberikan">
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function hapusOS(id) {
+            const el = document.getElementById(`os_${id}`);
+            if (el) el.remove();
+        }
+
+        function tambahAlat() {
+            alatCount++;
+            const container = document.getElementById('alatList');
+            const div = document.createElement('div');
+            div.className = 'alat-item';
+            div.id = `alat_${alatCount}`;
+            div.innerHTML = `
+                <input type="text" class="alat-nama" placeholder="Nama alat" style="flex:1">
+                <button type="button" class="btn-remove" onclick="hapusAlat(${alatCount})" style="padding:8px 12px;"><i class="fas fa-trash"></i></button>
+            `;
+            container.appendChild(div);
+        }
+
+        function hapusAlat(id) {
+            const el = document.getElementById(`alat_${id}`);
+            if (el) el.remove();
+        }
+
+        function formatOSList() {
+            const items = document.querySelectorAll('.os-item');
+            if (items.length === 0) return "*Tidak ada data OS*";
+            
+            let result = `*Jumlah Penerima Manfaat   :* ${items.length} Jiwa \n\n`;
+            items.forEach((item, idx) => {
+                const nama = item.querySelector('.os-nama')?.value || '-';
+                const kondisi = item.querySelector('.os-kondisi')?.value || '-';
+                const keluhan = item.querySelector('.os-keluhan')?.value || '-';
+                const tindakan = item.querySelector('.os-tindakan')?.value || '-';
+                
+                result += `${idx+1}. *OS  :* ${nama}\n`;
+                if (kondisi !== '-') result += `       *Kondisi    :* ${kondisi}\n`;
+                if (keluhan !== '-') result += `       *Keluhan    :* ${keluhan}\n`;
+                if (tindakan !== '-') result += `       *Tindakan   :* ${tindakan}\n`;
+                result += `\n`;
+            });
+            return result;
+        }
+
+        function formatAlatList() {
+            const items = document.querySelectorAll('.alat-item input');
+            if (items.length === 0) return "1. Handscoon 6 Set\n2. Masker Tas PP 3 Pcs\n3. GCU 2 Alat\n4. Tensi\n5. Alkohol Swab 26 Pcs\n6. Strip Glukosa 15 Pcs\n7. Strip Kolestrol 15 pcs\n8. Strip Asam Urat 15 pcs\n9. Lancet 16";
+            
+            let result = "";
+            items.forEach((item, idx) => {
+                const nama = item.value.trim();
+                if (nama) {
+                    result += `${idx+1}. ${nama}\n`;
+                }
+            });
+            return result || "1. Handscoon 6 Set\n2. Masker Tas PP 3 Pcs\n3. GCU 2 Alat\n4. Tensi\n5. Alkohol Swab 26 Pcs\n6. Strip Glukosa 15 Pcs\n7. Strip Kolestrol 15 pcs\n8. Strip Asam Urat 15 pcs\n9. Lancet 16";
+        }
+
+        function sendToWA() {
+            const tanggal = document.getElementById('tanggal').value;
+            const pukul = document.getElementById('pukul').value;
+            const selesai = document.getElementById('selesai').value;
+            const kegiatan = document.getElementById('kegiatan').value;
+            const alamat = document.getElementById('alamat').value;
+            const driver = document.getElementById('driver').value;
+            const crew = document.getElementById('crew').value;
+            const posko = document.getElementById('posko').value;
+
+            if (!tanggal || !pukul || !selesai || !kegiatan || !alamat || !driver || !crew || !posko) {
+                alert('Mohon lengkapi semua data yang wajib diisi!');
+                return;
+            }
+
+            const greeting = getGreeting();
+            const osList = formatOSList();
+            const alatList = formatAlatList();
+
+            const message = `*${greeting} IZIN MELAPORKAN PELAYANAN EVENT AMBULAN GAWAT DARURAT* 
+
+- *Hari/Tanggal :*  ${tanggal} 
+- *Pukul              :* ${pukul} Wib
+- *Selesai           :* ${selesai} Wib
+- *Kegiatan        :* ${kegiatan}
+- *Alamat            :* (${alamat})
+
+- *Dengan Rincian Sebagai Berikut  :* 
+
+${osList}
+*Keterangan*: -
+
+- *Alat Yang Digunakan :*
+${alatList}
+
+*Dilaporkan :*
+- *Driver* : ${driver}
+- *Crew* : ${crew}
+- *Posko :* ${posko}
+
+*Call Center :*
+PMI Kota Jakarta Utara
+Telp. 089-8866-9000
+*#Terus Kobarkan Kebaikan*`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>

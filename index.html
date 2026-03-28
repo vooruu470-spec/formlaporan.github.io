@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Grid 4 Card */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Logo di tengah card */
+        .card-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .card-logo i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Form Laporan</h1>
+        </div>
+
+        <div class="card-grid">
+            <!-- Rujukan - klik pindah ke halaman rujukan.html -->
+            <a href="rujukan.html" class="card">
+                <div class="card-logo">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <h3>Rujukan</h3>
+                <p>Laporan rujukan pasien</p>
+            </a>
+
+            <!-- Lakalantas - klik pindah ke halaman lakalantas.html -->
+            <a href="lakalantas.html" class="card">
+                <div class="card-logo">
+                    <i class="fas fa-car-crash"></i>
+                </div>
+                <h3>Lakalantas</h3>
+                <p>Laporan kecelakaan lalu lintas</p>
+            </a>
+
+            <!-- Kebakaran - klik pindah ke halaman kebakaran.html -->
+            <a href="kebakaran.html" class="card">
+                <div class="card-logo">
+                    <i class="fas fa-fire-extinguisher"></i>
+                </div>
+                <h3>Kebakaran</h3>
+                <p>Laporan kejadian kebakaran</p>
+            </a>
+
+            <!-- Event - klik pindah ke halaman event.html -->
+            <a href="event.html" class="card">
+                <div class="card-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Event</h3>
+                <p>Laporan kegiatan event</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

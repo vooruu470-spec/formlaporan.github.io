@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Laporan Kebakaran | PMI Jakarta Utara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header .logo {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+        }
+
+        .header .logo i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            color: #1e293b;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .greeting-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+
+        .form-group label i {
+            color: #667eea;
+            margin-right: 6px;
+            width: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin: 20px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        /* Korban & Kerusakan Item */
+        .korban-item, .kerusakan-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .item-header h4 {
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .btn-remove {
+            background: #fee2e2;
+            border: none;
+            color: #ef4444;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+
+        .btn-add {
+            background: #e6f0ff;
+            border: none;
+            color: #667eea;
+            padding: 10px;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            background: #d9e6ff;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        .note {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.7rem;
+            color: #475569;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 20px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-fire-extinguisher"></i>
+                </div>
+                <div class="greeting-badge" id="greetingText"></div>
+                <h1>Form Laporan Kebakaran</h1>
+                <p>PMI Jakarta Utara | Tanggap Darurat Bencana</p>
+            </div>
+
+            <form id="reportForm">
+                <!-- 1. INFORMASI KEJADIAN -->
+                <div class="section-title"><i class="fas fa-info-circle"></i> 1. INFORMASI KEJADIAN</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-fire"></i> JENIS KEJADIAN</label>
+                        <input type="text" value="Kebakaran" readonly style="background:#f1f5f9;">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> TERIMA BERITA</label>
+                        <input type="text" id="terimaBerita" placeholder="00:10 Wib" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-start"></i> AWAL KEJADIAN</label>
+                        <input type="text" id="awalKejadian" placeholder="00:00 Wib" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-bolt"></i> PENYEBAB KEJADIAN</label>
+                        <input type="text" id="penyebab" placeholder="Korsleting Listrik" required>
+                    </div>
+                </div>
+
+                <!-- 2. INFORMASI UMUM -->
+                <div class="section-title"><i class="fas fa-map-marker-alt"></i> 2. INFORMASI UMUM</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> HARI/TANGGAL</label>
+                        <input type="text" id="tanggal" placeholder="Sabtu, 21 Februari 2026" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-pin"></i> ALAMAT</label>
+                        <input type="text" id="alamat" placeholder="Jl. Mindi Blok O No.31" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-building"></i> Kelurahan</label>
+                        <input type="text" id="kelurahan" placeholder="Lagoa" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-city"></i> Kecamatan</label>
+                        <input type="text" id="kecamatan" placeholder="Koja" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-phone-alt"></i> NARAHUBUNG</label>
+                    <textarea id="narahubung" rows="3" placeholder="1.  Pak Wibowo (Petugas Damkar) 
+Telp : 081285791775
+2. Ibu Sarah (Pemilik Rumah) 
+Telp : 085692831280"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-water"></i> PENDINGINAN</label>
+                        <input type="text" id="pendinginan" placeholder="00:20 Wib" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-check-circle"></i> SELESAI</label>
+                        <input type="text" id="selesai" placeholder="00:43 Wib" required>
+                    </div>
+                </div>
+
+                <!-- 3. DAMPAK DAN OBJEK -->
+                <div class="section-title"><i class="fas fa-chart-line"></i> 3. DAMPAK DAN OBJEK</div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> KORBAN TERDAMPAK</label>
+                    <div class="form-row">
+                        <input type="text" id="kk" placeholder="1 KK" style="width:100%">
+                        <input type="text" id="jiwa" placeholder="7 Jiwa" style="width:100%">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group"><label>Dewasa Laki-laki</label><input type="text" id="dewasaL" placeholder="4 Jiwa"></div>
+                    <div class="form-group"><label>Dewasa Perempuan</label><input type="text" id="dewasaP" placeholder="2 Jiwa"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Anak-anak</label><input type="text" id="anak" placeholder="1 Jiwa"></div>
+                    <div class="form-group"><label>BALITA</label><input type="text" id="balita" placeholder="0 Jiwa"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>TK</label><input type="text" id="tk" placeholder="0 Jiwa"></div>
+                    <div class="form-group"><label>SD</label><input type="text" id="sd" placeholder="1 Jiwa"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>SMP</label><input type="text" id="smp" placeholder="0 Jiwa"></div>
+                    <div class="form-group"><label>SMA</label><input type="text" id="sma" placeholder="0 Jiwa"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Lansia Laki-laki</label><input type="text" id="lansiaL" placeholder="0 Jiwa"></div>
+                    <div class="form-group"><label>Lansia Perempuan</label><input type="text" id="lansiaP" placeholder="0 Jiwa"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>KORBAN HILANG</label><input type="text" id="hilang" placeholder="0 Jiwa"></div>
+                    <div class="form-group"><label>KORBAN MENINGGAL</label><input type="text" id="meninggal" placeholder="0 Jiwa"></div>
+                </div>
+
+                <!-- KORBAN LUKA & SYOK (DENGAN TAMBAH) -->
+                <div class="section-title"><i class="fas fa-band-aid"></i> KORBAN LUKA & SYOK</div>
+                <div id="korbanList"></div>
+                <button type="button" class="btn-add" onclick="tambahKorban()">
+                    <i class="fas fa-plus-circle"></i> + Tambah Korban Luka/Syok
+                </button>
+
+                <!-- FASILITAS UMUM DLL (SEMUA TETAP ADA) -->
+                <div class="form-group"><label>FASILITAS UMUM</label><input type="text" id="fasilitasUmum" placeholder="0"></div>
+                <div class="form-group"><label>RUMAH TINGGAL</label><input type="text" id="rumahTinggal" placeholder="1"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Rumah)</label><input type="text" id="rusakRinganRumah" placeholder="1"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Rumah)</label><input type="text" id="rusakBeratRumah" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>GUDANG</label><input type="text" id="gudang" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Gudang)</label><input type="text" id="rusakRinganGudang" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Gudang)</label><input type="text" id="rusakBeratGudang" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>GEDUNG/RUKO</label><input type="text" id="gedung" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Gedung)</label><input type="text" id="rusakRinganGedung" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Gedung)</label><input type="text" id="rusakBeratGedung" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>BANGUNAN HAK MILIK</label><input type="text" id="bangunanHakMilik" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Hak Milik)</label><input type="text" id="rusakRinganHakMilik" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Hak Milik)</label><input type="text" id="rusakBeratHakMilik" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>KAPAL</label><input type="text" id="kapal" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Kapal)</label><input type="text" id="rusakRinganKapal" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Kapal)</label><input type="text" id="rusakBeratKapal" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>KENDARAAN</label><input type="text" id="kendaraan" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Kendaraan)</label><input type="text" id="rusakRinganKendaraan" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Kendaraan)</label><input type="text" id="rusakBeratKendaraan" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>LAHAN KOSONG</label><input type="text" id="lahanKosong" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Lahan)</label><input type="text" id="rusakRinganLahan" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Lahan)</label><input type="text" id="rusakBeratLahan" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>LAPAK LIAR</label><input type="text" id="lapakLiar" placeholder="0"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>RUSAK RINGAN (Lapak)</label><input type="text" id="rusakRinganLapak" placeholder="0"></div>
+                    <div class="form-group"><label>RUSAK BERAT (Lapak)</label><input type="text" id="rusakBeratLapak" placeholder="0"></div>
+                </div>
+
+                <!-- KERUSAKAN TAMBAHAN (PILIHAN) -->
+                <div class="section-title"><i class="fas fa-plus-circle"></i> Kerusakan Lainnya (Opsional)</div>
+                <div id="kerusakanList"></div>
+                <button type="button" class="btn-add" onclick="tambahKerusakan()">
+                    <i class="fas fa-plus-circle"></i> + Tambah Jenis Kerusakan Lain
+                </button>
+
+                <!-- 4. PENGUNGSI -->
+                <div class="section-title"><i class="fas fa-tent"></i> 4. PENGUNGSI</div>
+                <div class="form-row">
+                    <div class="form-group"><label>Jumlah Titik Pengungsi</label><input type="text" id="titikPengungsi" placeholder="0"></div>
+                    <div class="form-group"><label>Jumlah Pengungsi</label><input type="text" id="jumlahPengungsi" placeholder="0"></div>
+                </div>
+                <div class="form-group"><label>Lokasi Pengungsi</label><input type="text" id="lokasiPengungsi" placeholder="-"></div>
+
+                <!-- CATATAN -->
+                <div class="section-title"><i class="fas fa-pen"></i> Catatan</div>
+                <div class="form-group">
+                    <textarea id="catatan" rows="2" placeholder="Pemilik rumah sedang tidur tiba-tiba dibangunkan oleh tetangga karena munculnya api dilantai 2 pemilik rumah."></textarea>
+                </div>
+
+                <!-- 5. UNIT DI LOKASI -->
+                <div class="section-title"><i class="fas fa-truck"></i> 5. UNIT DI LOKASI</div>
+                <div class="form-row">
+                    <div class="form-group"><label>Unit Ambulance PMI Jakut</label><input type="text" id="unitAmbulance" placeholder="1"></div>
+                    <div class="form-group"><label>Pemadam Kebakaran</label><input type="text" id="unitDamkar" placeholder="1 Unit"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Petugas Pendukung</label>
+                    <textarea id="petugaspendukung" rows="5" placeholder=""></textarea>
+                </div>
+
+                <!-- PETUGAS LAPANGAN -->
+                <div class="section-title"><i class="fas fa-users"></i> Petugas di Lapangan</div>
+                <div class="form-row">
+                    <div class="form-group"><label>Driver</label><input type="text" id="driver" placeholder="Made"></div>
+                    <div class="form-group"><label>Crew</label><input type="text" id="crew" placeholder="Izharahmani & Tria"></div>
+                </div>
+                <div class="form-group"><label>Posko</label><input type="text" id="posko" placeholder="Nabila"></div>
+
+                <button type="button" class="btn-submit" onclick="sendToWA()">
+                    <i class="fab fa-whatsapp"></i> Kirim Laporan ke WhatsApp
+                </button>
+            </form>
+
+            <div class="note">
+                <i class="fas fa-info-circle"></i> Laporan akan dikirim ke Call Center PMI Jakarta Utara<br>
+                <strong>089-8866-9000</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WA_NUMBER = '628988669000';
+        let korbanCount = 0;
+        let kerusakanCount = 0;
+
+        const jenisKerusakan = [
+            "Rumah Tinggal", "Bangunan Hak Milik", "Gudang", "Gedung/Ruko",
+            "Lahan Kosong", "Lapak Liar", "Kendaraan", "Kapal", "Fasilitas Umum"
+        ];
+
+        function getGreeting() {
+            const hours = new Date().getHours();
+            if (hours >= 5 && hours < 11) return "Selamat Pagi";
+            if (hours >= 11 && hours < 15) return "Selamat Siang";
+            if (hours >= 15 && hours < 18) return "Selamat Sore";
+            return "Selamat Malam";
+        }
+
+        document.getElementById('greetingText').innerHTML = getGreeting();
+
+        function tambahKorban() {
+            korbanCount++;
+            const container = document.getElementById('korbanList');
+            const div = document.createElement('div');
+            div.className = 'korban-item';
+            div.id = `korban_${korbanCount}`;
+            div.innerHTML = `
+                <div class="item-header">
+                    <h4><i class="fas fa-user-injured"></i> Korban Luka/Syok #${korbanCount}</h4>
+                    <button type="button" class="btn-remove" onclick="hapusKorban(${korbanCount})"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+                <div class="form-group"><label>Nama</label><input type="text" class="korban-nama" placeholder="Nama korban"></div>
+                <div class="form-group"><label>Alamat</label><input type="text" class="korban-alamat" placeholder="Alamat korban"></div>
+                <div class="form-group"><label>Keluhan</label><input type="text" class="korban-keluhan" placeholder="Keluhan / kondisi"></div>
+                <div class="form-group"><label>Penanganan</label><input type="text" class="korban-penanganan" placeholder="Penanganan yang diberikan"></div>
+            `;
+            container.appendChild(div);
+        }
+
+        function hapusKorban(id) {
+            const el = document.getElementById(`korban_${id}`);
+            if (el) el.remove();
+        }
+
+        function tambahKerusakan() {
+            kerusakanCount++;
+            const container = document.getElementById('kerusakanList');
+            const div = document.createElement('div');
+            div.className = 'kerusakan-item';
+            div.id = `kerusakan_${kerusakanCount}`;
+            
+            let optionsHtml = '';
+            jenisKerusakan.forEach(option => {
+                optionsHtml += `<option value="${option}">${option}</option>`;
+            });
+            
+            div.innerHTML = `
+                <div class="item-header">
+                    <h4><i class="fas fa-building"></i> Kerusakan Tambahan #${kerusakanCount}</h4>
+                    <button type="button" class="btn-remove" onclick="hapusKerusakan(${kerusakanCount})"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Jenis Bangunan</label>
+                        <select class="kerusakan-jenis">${optionsHtml}</select>
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Unit</label>
+                        <input type="text" class="kerusakan-jumlah" placeholder="Contoh: 1">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Rusak Ringan</label>
+                        <input type="text" class="kerusakan-ringan" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Rusak Berat</label>
+                        <input type="text" class="kerusakan-berat" placeholder="0">
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function hapusKerusakan(id) {
+            const el = document.getElementById(`kerusakan_${id}`);
+            if (el) el.remove();
+        }
+
+        function formatKorbanList() {
+            const items = document.querySelectorAll('.korban-item');
+            if (items.length === 0) return "Tidak ada korban luka/syok";
+            let result = "";
+            items.forEach((item, idx) => {
+                const nama = item.querySelector('.korban-nama')?.value || '-';
+                const alamat = item.querySelector('.korban-alamat')?.value || '-';
+                const keluhan = item.querySelector('.korban-keluhan')?.value || '-';
+                const penanganan = item.querySelector('.korban-penanganan')?.value || '-';
+                result += `\n\n**Korban #${idx+1}**\n- Nama: ${nama}\n- Alamat: ${alamat}\n- Keluhan: ${keluhan}\n- Penanganan: ${penanganan}`;
+            });
+            return result;
+        }
+
+        function formatKerusakanList() {
+            const items = document.querySelectorAll('.kerusakan-item');
+            if (items.length === 0) return "";
+            let result = "\n\n*KERUSAKAN TAMBAHAN*";
+            items.forEach((item, idx) => {
+                const jenis = item.querySelector('.kerusakan-jenis')?.value || '-';
+                const jumlah = item.querySelector('.kerusakan-jumlah')?.value || '0';
+                const ringan = item.querySelector('.kerusakan-ringan')?.value || '0';
+                const berat = item.querySelector('.kerusakan-berat')?.value || '0';
+                result += `\n- ${jenis} : ${jumlah} Unit (Rusak Ringan: ${ringan}, Rusak Berat: ${berat})`;
+            });
+            return result;
+        }
+
+        function sendToWA() {
+            const data = {
+                terimaBerita: document.getElementById('terimaBerita').value,
+                awalKejadian: document.getElementById('awalKejadian').value,
+                penyebab: document.getElementById('penyebab').value,
+                tanggal: document.getElementById('tanggal').value,
+                alamat: document.getElementById('alamat').value,
+                kelurahan: document.getElementById('kelurahan').value,
+                kecamatan: document.getElementById('kecamatan').value,
+                narahubung: document.getElementById('narahubung').value,
+                pendinginan: document.getElementById('pendinginan').value,
+                selesai: document.getElementById('selesai').value,
+                kk: document.getElementById('kk').value,
+                jiwa: document.getElementById('jiwa').value,
+                dewasaL: document.getElementById('dewasaL').value,
+                dewasaP: document.getElementById('dewasaP').value,
+                anak: document.getElementById('anak').value,
+                balita: document.getElementById('balita').value,
+                tk: document.getElementById('tk').value,
+                sd: document.getElementById('sd').value,
+                smp: document.getElementById('smp').value,
+                sma: document.getElementById('sma').value,
+                lansiaL: document.getElementById('lansiaL').value,
+                lansiaP: document.getElementById('lansiaP').value,
+                hilang: document.getElementById('hilang').value,
+                meninggal: document.getElementById('meninggal').value,
+                fasilitasUmum: document.getElementById('fasilitasUmum').value,
+                rumahTinggal: document.getElementById('rumahTinggal').value,
+                rusakRinganRumah: document.getElementById('rusakRinganRumah').value,
+                rusakBeratRumah: document.getElementById('rusakBeratRumah').value,
+                gudang: document.getElementById('gudang').value,
+                rusakRinganGudang: document.getElementById('rusakRinganGudang').value,
+                rusakBeratGudang: document.getElementById('rusakBeratGudang').value,
+                gedung: document.getElementById('gedung').value,
+                rusakRinganGedung: document.getElementById('rusakRinganGedung').value,
+                rusakBeratGedung: document.getElementById('rusakBeratGedung').value,
+                bangunanHakMilik: document.getElementById('bangunanHakMilik').value,
+                rusakRinganHakMilik: document.getElementById('rusakRinganHakMilik').value,
+                rusakBeratHakMilik: document.getElementById('rusakBeratHakMilik').value,
+                kapal: document.getElementById('kapal').value,
+                rusakRinganKapal: document.getElementById('rusakRinganKapal').value,
+                rusakBeratKapal: document.getElementById('rusakBeratKapal').value,
+                kendaraan: document.getElementById('kendaraan').value,
+                rusakRinganKendaraan: document.getElementById('rusakRinganKendaraan').value,
+                rusakBeratKendaraan: document.getElementById('rusakBeratKendaraan').value,
+                lahanKosong: document.getElementById('lahanKosong').value,
+                rusakRinganLahan: document.getElementById('rusakRinganLahan').value,
+                rusakBeratLahan: document.getElementById('rusakBeratLahan').value,
+                lapakLiar: document.getElementById('lapakLiar').value,
+                rusakRinganLapak: document.getElementById('rusakRinganLapak').value,
+                rusakBeratLapak: document.getElementById('rusakBeratLapak').value,
+                titikPengungsi: document.getElementById('titikPengungsi').value,
+                jumlahPengungsi: document.getElementById('jumlahPengungsi').value,
+                lokasiPengungsi: document.getElementById('lokasiPengungsi').value,
+                catatan: document.getElementById('catatan').value,
+                unitAmbulance: document.getElementById('unitAmbulance').value,
+                unitDamkar: document.getElementById('unitDamkar').value,
+                petugasPendukung: document.getElementById('petugasPendukung').value,
+                driver: document.getElementById('driver').value,
+                crew: document.getElementById('crew').value,
+                posko: document.getElementById('posko').value
+            };
+
+            const korbanList = formatKorbanList();
+            const kerusakanList = formatKerusakanList();
+
+            const message = `*${getGreeting()}*
+
+*ASSESSMENT*
+*POSKO PMI KOTA JAKARTA UTARA*
+
+*1. INFORMASI KEJADIAN*
+• JENIS KEJADIAN   : Kebakaran
+• TERIMA BERITA    : ${data.terimaBerita} Wib
+• AWAL KEJADIAN    : ${data.awalKejadian} Wib
+• PENYEBAB KEJADIAN: ${data.penyebab}
+
+*2. INFORMASI UMUM*
+• HARI/TANGGAL     : ${data.tanggal}
+• ALAMAT           : ${data.alamat}
+  Kelurahan : ${data.kelurahan}
+  Kecamatan : ${data.kecamatan}
+• NARAHUBUNG :
+${data.narahubung}
+• PENDINGINAN      : ${data.pendinginan} Wib
+• SELESAI          : ${data.selesai} Wib
+
+*3. DAMPAK DAN OBJEK*
+• KORBAN TERDAMPAK : ${data.kk}, ${data.jiwa} Jiwa
+  - Dewasa Laki-laki   : ${data.dewasaL} Jiwa
+  - Dewasa Perempuan   : ${data.dewasaP} Jiwa
+  - Anak-anak          : ${data.anak} Jiwa
+    A. BALITA : ${data.balita} Jiwa
+    B. TK     : ${data.tk} Jiwa
+    C. SD     : ${data.sd} Jiwa
+    D. SMP    : ${data.smp} Jiwa
+    E. SMA    : ${data.sma} Jiwa
+  - Lansia Laki-laki    : ${data.lansiaL} Jiwa
+  - Lansia Perempuan    : ${data.lansiaP} Jiwa
+• KORBAN HILANG        : ${data.hilang} Jiwa
+• KORBAN MENINGGAL     : ${data.meninggal} Jiwa
+• KORBAN LUKA & SYOK   :${korbanList}
+
+FASILITAS UMUM 		: ${data.fasilitasUmum}
+RUMAH TINGGAL	  : ${data.rumahTinggal}
+     • RUSAK RINGAN 	: ${data.rusakRinganRumah}
+     • RUSAK BERAT 	: ${data.rusakBeratRumah}
+GUDANG 			                : ${data.gudang}
+     • RUSAK RINGAN 		: ${data.rusakRinganGudang}
+     • RUSAK BERAT 		   : ${data.rusakBeratGudang}
+GEDUNG/RUKO 		     	  : ${data.gedung}
+     • RUSAK RINGAN 		: ${data.rusakRinganGedung}	
+     • RUSAK BERAT 		    : ${data.rusakBeratGedung}
+BANGUNAN HAK MILIK 	: ${data.bangunanHakMilik}
+     • RUSAK RINGAN 		: ${data.rusakRinganHakMilik}
+     • RUSAK BERAT 	    	: ${data.rusakBeratHakMilik}
+KAPAL 				: ${data.kapal}
+     • RUSAK RINGAN 		: ${data.rusakRinganKapal}
+     • RUSAK BERAT 		   : ${data.rusakBeratKapal}
+KENDARAAN 		: ${data.kendaraan}
+     • RUSAK RINGAN 	  : ${data.rusakRinganKendaraan}
+     • RUSAK BERAT 		   : ${data.rusakBeratKendaraan}
+LAHAN KOSONG 		: ${data.lahanKosong}
+     • RUSAK RINGAN 		: ${data.rusakRinganLahan}
+     • RUSAK BERAT 		   : ${data.rusakBeratLahan}
+LAPAK LIAR 			: ${data.lapakLiar}
+     • RUSAK RINGAN 		: ${data.rusakRinganLapak}
+     • RUSAK BERAT 	    	: ${data.rusakBeratLapak}${kerusakanList}
+
+*4. PENGUNGSI*
+• Jumlah Titik Pengungsi : ${data.titikPengungsi}
+• Lokasi Pengungsi       : ${data.lokasiPengungsi}
+• Jumlah Pengungsi       : ${data.jumlahPengungsi}
+
+*Catatan :* ${data.catatan}
+
+*5. UNIT DI LOKASI*
+• Unit Ambulance PMI Jakut : ${data.unitAmbulance}
+• Pemadam Kebakaran        : ${data.unitDamkar}
+• Petugas Pendukung        : 
+${data.petugasPendukung}
+
+*Petugas di lapangan :*
+- Driver : ${data.driver}
+- Crew   : ${data.crew}
+- Posko  : ${data.posko}
+
+Call Center :
+PMI Kota Jakarta Utara
+Telp. 089-8866-9000
+*#TerusKobarkanKebaikan*`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
