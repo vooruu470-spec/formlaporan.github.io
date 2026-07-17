@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Laporan Kebakaran | PMI Jakarta Utara</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #991b1b;
+            --primary-light: #fef2f2;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +27,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #fef2f2, #fff5f5);
             min-height: 100vh;
             padding: 40px 20px;
         }
@@ -25,11 +37,48 @@
             margin: 0 auto;
         }
 
+        /* Animasi */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         .form-card {
             background: white;
-            border-radius: 28px;
+            border-radius: 24px;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.10);
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
+            background-size: 200% center;
+            animation: shimmer 3s infinite linear;
         }
 
         .header {
@@ -38,14 +87,22 @@
         }
 
         .header .logo {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 12px;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
+            animation: float 4s ease-in-out infinite;
+            transition: 0.3s;
+        }
+
+        .header .logo:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.35);
         }
 
         .header .logo i {
@@ -54,24 +111,30 @@
         }
 
         .header h1 {
-            font-size: 1.4rem;
-            color: #1e293b;
+            font-size: 1.7rem;
+            color: var(--text);
+            font-weight: 800;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .header p {
-            color: #64748b;
-            font-size: 0.8rem;
+            color: var(--muted);
         }
 
         .greeting-badge {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             color: white;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 50px;
             display: inline-block;
             margin-bottom: 12px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+            animation: pulse 2s infinite;
         }
 
         .form-group {
@@ -87,7 +150,7 @@
         }
 
         .form-group label i {
-            color: #667eea;
+            color: var(--primary);
             margin-right: 6px;
             width: 20px;
         }
@@ -96,20 +159,28 @@
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 10px 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
             font-size: 0.9rem;
             font-family: 'Inter', sans-serif;
             background: #f8fafc;
+            transition: 0.2s;
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+            border-color: #f87171;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
             background: white;
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
         }
 
         .form-row {
@@ -120,10 +191,10 @@
 
         .section-title {
             font-weight: 700;
-            color: #1e293b;
-            margin: 20px 0 12px 0;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #e2e8f0;
+            color: var(--text);
+            margin: 20px 0 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -131,16 +202,24 @@
         }
 
         .section-title i {
-            color: #667eea;
+            color: var(--primary);
         }
 
         /* Korban & Kerusakan Item */
-        .korban-item, .kerusakan-item {
-            background: #f8fafc;
-            border-radius: 16px;
+        .korban-item,
+        .kerusakan-item {
+            background: #fefafb;
+            border: 1px solid var(--border);
+            border-radius: 18px;
             padding: 15px;
             margin-bottom: 15px;
-            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+
+        .korban-item:hover,
+        .kerusakan-item:hover {
+            border-color: #fecaca;
+            background: #fffcfc;
         }
 
         .item-header {
@@ -149,53 +228,66 @@
             align-items: center;
             margin-bottom: 12px;
             padding-bottom: 8px;
-            border-bottom: 1px dashed #e2e8f0;
+            border-bottom: 1px dashed var(--border);
         }
 
         .item-header h4 {
-            color: #667eea;
+            color: var(--primary);
             font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .item-header h4 i {
+            margin-right: 8px;
         }
 
         .btn-remove {
             background: #fee2e2;
             border: none;
-            color: #ef4444;
+            color: #dc2626;
             padding: 4px 10px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.7rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: #fecaca;
         }
 
         .btn-add {
-            background: #e6f0ff;
+            background: #fee2e2;
             border: none;
-            color: #667eea;
+            color: #dc2626;
             padding: 10px;
-            border-radius: 12px;
+            border-radius: 14px;
             width: 100%;
             cursor: pointer;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: 0.2s;
         }
 
         .btn-add:hover {
-            background: #d9e6ff;
+            background: #fecaca;
+            transform: translateY(-2px);
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border-radius: 50px;
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -203,30 +295,86 @@
             gap: 8px;
             width: 100%;
             margin-top: 20px;
+            transition: 0.3s;
         }
 
         .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-submit i {
+            font-size: 1.1rem;
         }
 
         .note {
-            background: #f1f5f9;
-            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
             padding: 10px;
             margin-top: 15px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #475569;
             text-align: center;
         }
 
+        .note strong {
+            color: var(--primary);
+        }
+
+        /* Animasi fade-in untuk elemen baru */
+        .korban-item,
+        .kerusakan-item {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+
         @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
             .form-card {
                 padding: 20px;
+                border-radius: 20px;
             }
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
+            }
+            .header .logo {
+                width: 60px;
+                height: 60px;
+            }
+            .header .logo i {
+                font-size: 1.5rem;
+            }
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            .header p {
+                font-size: 0.8rem;
+            }
+            .greeting-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px;
+                padding: 12px;
+            }
+            .section-title {
+                font-size: 0.95rem;
+            }
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .btn-remove {
+                width: 100%;
+                text-align: center;
+                padding: 6px;
             }
         }
     </style>
@@ -326,6 +474,8 @@ Telp : 085692831280"></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label>Anak-anak</label><input type="text" id="anak" placeholder="1 Jiwa"></div>
+                    <div class="form-group"><label>Anak" Laki-laki</label><input type="text" id="AnakL" placeholder="4 Jiwa"></div>
+                    <div class="form-group"><label>Anak" Perempuan</label><input type="text" id="AnakP" placeholder="2 Jiwa"></div>
                     <div class="form-group"><label>BALITA</label><input type="text" id="balita" placeholder="0 Jiwa"></div>
                 </div>
                 <div class="form-row">
@@ -425,7 +575,7 @@ Telp : 085692831280"></textarea>
 
                 <div class="form-group">
                     <label>Petugas Pendukung</label>
-                    <textarea id="petugaspendukung" rows="5" placeholder=""></textarea>
+                    <textarea id="petugasPendukung" rows="5" placeholder=""></textarea>
                 </div>
 
                 <!-- PETUGAS LAPANGAN -->
@@ -583,6 +733,8 @@ Telp : 085692831280"></textarea>
                 dewasaL: document.getElementById('dewasaL').value,
                 dewasaP: document.getElementById('dewasaP').value,
                 anak: document.getElementById('anak').value,
+                AnakL: document.getElementById('AnakL').value,
+                AnakP: document.getElementById('AnakP').value,
                 balita: document.getElementById('balita').value,
                 tk: document.getElementById('tk').value,
                 sd: document.getElementById('sd').value,
@@ -623,7 +775,7 @@ Telp : 085692831280"></textarea>
                 catatan: document.getElementById('catatan').value,
                 unitAmbulance: document.getElementById('unitAmbulance').value,
                 unitDamkar: document.getElementById('unitDamkar').value,
-                petugasPendukung: document.getElementById('petugasPendukung').value,
+                petugasPendukung: document.getElementById('petugasPendukung').value || '-',
                 driver: document.getElementById('driver').value,
                 crew: document.getElementById('crew').value,
                 posko: document.getElementById('posko').value
@@ -658,6 +810,8 @@ ${data.narahubung}
   - Dewasa Laki-laki   : ${data.dewasaL} Jiwa
   - Dewasa Perempuan   : ${data.dewasaP} Jiwa
   - Anak-anak          : ${data.anak} Jiwa
+    Anak" Laki-laki    : ${data.AnakL} Jiwa
+    Anak" Perempuan    : ${data.AnakP} Jiwa
     A. BALITA : ${data.balita} Jiwa
     B. TK     : ${data.tk} Jiwa
     C. SD     : ${data.sd} Jiwa
@@ -722,4 +876,4 @@ Telp. 089-8866-9000
         }
     </script>
 </body>
-</html>
+                </html>
