@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Laporan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Form Laporan PMI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,142 +13,415 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #991b1b;
+            --primary-light: #fef2f2;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, #ffffff, #f8fafc);
             min-height: 100vh;
-            padding: 50px 20px;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animasi */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
         }
 
-        /* Header */
+        /* HEADER */
         .header {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
+            background-size: 200% center;
+            animation: shimmer 3s infinite linear;
+        }
+
+        .logo-pmi {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.25);
+            margin-bottom: 20px;
+            transition: 0.3s;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .logo-pmi:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(220, 38, 38, 0.4);
         }
 
         .header h1 {
-            font-size: 2rem;
-            color: white;
-            font-weight: 600;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Grid 4 Card */
+        .header p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            margin-bottom: 25px;
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.15s;
+            opacity: 0;
+        }
+
+        .section-title h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title h2 i {
+            color: #dc2626;
+        }
+
+        .section-title .line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #dc2626, transparent);
+            border-radius: 2px;
+        }
+
+        /* CARD GRID */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
 
-        /* Card */
         .card {
             background: white;
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 24px;
+            padding: 30px;
             text-decoration: none;
-            display: block;
+            color: inherit;
+            border: 1px solid var(--border);
+            transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.15s; }
+        .card:nth-child(2) { animation-delay: 0.25s; }
+        .card:nth-child(3) { animation-delay: 0.35s; }
+        .card:nth-child(4) { animation-delay: 0.45s; }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #fca5a5, #dc2626);
+            background-size: 200% center;
+            animation: shimmer 4s infinite linear;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.4s;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(220, 38, 38, 0.15);
+            border-color: #fecaca;
         }
 
-        /* Logo di tengah card */
-        .card-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.04), transparent 70%);
+            opacity: 0;
+            transition: 0.4s;
+            pointer-events: none;
             border-radius: 50%;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+
+        .card-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 0 auto 20px auto;
+            align-items: center;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            margin-bottom: 20px;
+            transition: 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover .card-logo {
+            transform: scale(1.08) rotate(-4deg);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
         }
 
         .card-logo i {
-            font-size: 2rem;
             color: white;
+            font-size: 1.8rem;
+            transition: 0.3s;
+        }
+
+        .card:hover .card-logo i {
+            transform: scale(1.1);
         }
 
         .card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
 
         .card p {
-            color: #64748b;
-            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Responsive */
-        @media (max-width: 800px) {
+        .card-arrow {
+            display: inline-block;
+            margin-top: 15px;
+            color: #dc2626;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card-arrow i {
+            font-size: 0.8rem;
+            margin-left: 6px;
+            transition: 0.2s;
+        }
+
+        .card:hover .card-arrow i {
+            transform: translateX(5px);
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 0 10px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .footer .heart {
+            color: #dc2626;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
             .card-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
+            .header {
+                padding: 30px 20px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
             .card-grid {
                 grid-template-columns: 1fr;
+            }
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+            .logo-pmi {
+                width: 75px;
+                height: 75px;
             }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
+
+        <!-- HEADER -->
         <div class="header">
-            <h1>Form Laporan</h1>
+            <img src="logo.jpg" alt="Logo PMI" class="logo-pmi">
+            <h1>FORM LAPORAN PMI</h1>
+            <p>Sistem Pelaporan Digital Palang Merah Indonesia</p>
+        </div>
+
+        <!-- MENU -->
+        <div class="section-title">
+            <h2>
+                <i class="fas fa-bars"></i>
+                Menu Laporan
+                <span class="line"></span>
+            </h2>
         </div>
 
         <div class="card-grid">
-            <!-- Rujukan - klik pindah ke halaman rujukan.html -->
+
             <a href="rujukan.html" class="card">
                 <div class="card-logo">
                     <i class="fas fa-file-medical"></i>
                 </div>
                 <h3>Rujukan</h3>
-                <p>Laporan rujukan pasien</p>
+                <p>Input laporan rujukan pasien dan tindak lanjut.</p>
+                <div class="card-arrow">
+                    Buka <i class="fas fa-arrow-right"></i>
+                </div>
             </a>
 
-            <!-- Lakalantas - klik pindah ke halaman lakalantas.html -->
             <a href="lakalantas.html" class="card">
                 <div class="card-logo">
                     <i class="fas fa-car-crash"></i>
                 </div>
                 <h3>Lakalantas</h3>
-                <p>Laporan kecelakaan lalu lintas</p>
+                <p>Laporan kejadian kecelakaan lalu lintas.</p>
+                <div class="card-arrow">
+                    Buka <i class="fas fa-arrow-right"></i>
+                </div>
             </a>
 
-            <!-- Kebakaran - klik pindah ke halaman kebakaran.html -->
             <a href="kebakaran.html" class="card">
                 <div class="card-logo">
                     <i class="fas fa-fire-extinguisher"></i>
                 </div>
                 <h3>Kebakaran</h3>
-                <p>Laporan kejadian kebakaran</p>
+                <p>Laporan penanganan dan kejadian kebakaran.</p>
+                <div class="card-arrow">
+                    Buka <i class="fas fa-arrow-right"></i>
+                </div>
             </a>
 
-            <!-- Event - klik pindah ke halaman event.html -->
             <a href="event.html" class="card">
                 <div class="card-logo">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
                 <h3>Event</h3>
-                <p>Laporan kegiatan event</p>
+                <p>Laporan kegiatan dan event PMI.</p>
+                <div class="card-arrow">
+                    Buka <i class="fas fa-arrow-right"></i>
+                </div>
             </a>
+
         </div>
+
+        <div class="footer">
+            © 2026 <strong style="color:#dc2626;">PMI Digital Reporting System</strong>
+            &nbsp;·&nbsp; Dibuat dengan <span class="heart">♥</span> untuk PMI
+        </div>
+
     </div>
+
 </body>
-</html>
+                </html>
